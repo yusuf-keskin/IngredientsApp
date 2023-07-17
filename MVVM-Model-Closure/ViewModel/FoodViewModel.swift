@@ -19,7 +19,7 @@ class FoodViewModel : FoodViewModelProtocol {
         self.apis = apis
     }
         
-    func getIngredients(){
+    func getAllIngredients(){
         guard !apis.isEmpty else { return }
    
         apis.forEach {api in

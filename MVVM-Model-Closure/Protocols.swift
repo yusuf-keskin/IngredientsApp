@@ -15,7 +15,7 @@ protocol IngredientApiProtocol {
 protocol FoodViewModelProtocol {
     var vc : FoodPresenter? { get set }
     var ingredientPublisher : PassthroughSubject<[Ingredient], Never> { get set }
-    func getIngredients()
+    func getAllIngredients()
 }
 
 protocol FoodPresenter : AnyObject {

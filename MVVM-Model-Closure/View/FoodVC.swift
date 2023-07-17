@@ -20,7 +20,7 @@ class FoodVC: UIViewController , FoodPresenter {
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadIngredients()
-        model?.getIngredients()
+        model?.getAllIngredients()
         foodTableView.delegate = self
         foodTableView.dataSource = self
         foodTableView.backgroundColor = .white

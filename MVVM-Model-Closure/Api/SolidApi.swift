@@ -6,13 +6,14 @@
 //
 
 import Foundation
-import Combine
 
-class SolidApi : IngredientApiProtocol {
+class SolidApi : IngredientsApiProtocol {
     
-    func getIngredients(vc : FoodPresenter?, completion : @escaping (_ ingredients : [Ingredient]) -> Void ){
+    weak var vc : SolidIngredientProtocol?
+    
+    func getIngredients(completion : @escaping (_ ingredients : [Ingredient]) -> Void ){
         
-        let closure = {
+        let closure = { [weak vc] in
             guard let vc = vc else { return }
             vc.solidIngredientAction()
         }
@@ -24,7 +25,7 @@ class SolidApi : IngredientApiProtocol {
         
         DispatchQueue
             .global(qos: .userInteractive)
-            .asyncAfter(deadline:.now() + 0.2) { 
+            .asyncAfter(deadline: .now() + 0.4) {
                 completion(ingredients)
         }
     }

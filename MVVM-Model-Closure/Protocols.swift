@@ -8,18 +8,29 @@
 import Foundation
 import Combine
 
-protocol IngredientApiProtocol {
-    func getIngredients(vc : FoodPresenter? , completion : @escaping (_ ingredients : [Ingredient]) -> Void )
-}
-
 protocol FoodViewModelProtocol {
-    var vc : FoodPresenter? { get set }
-    var ingredientPublisher : PassthroughSubject<[Ingredient], Never> { get set }
-    func getAllIngredients()
+    var ingredientPublisher : PassthroughSubject<[Ingredient], Never> {get set}
+    var apis : [IngredientsApiProtocol] {get set}
+    func getApiData()
 }
 
-protocol FoodPresenter : AnyObject {
+protocol IngredientsApiProtocol {
+    func getIngredients(completion : @escaping (_ ingredients : [Ingredient]) -> Void )
+}
+
+protocol SolidIngredientProtocol: AnyObject {
     func solidIngredientAction()
+}
+
+protocol LiquidIngredientProtocol: AnyObject {
     func liquidIngredientAction()
+}
+
+protocol SpiceIngredientProtocol: AnyObject {
     func spiceIngredientAction()
 }
+
+protocol SauceIngredientProtocol : AnyObject {
+    func sauceIngredientAction()
+}
+

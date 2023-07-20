@@ -7,11 +7,13 @@
 
 import Foundation
 
-class SpiceApi : IngredientApiProtocol {
+class SpiceApi : IngredientsApiProtocol {
     
-    func getIngredients(vc : FoodPresenter? , completion : @escaping (_ ingredients : [Ingredient]) -> Void ){
+    weak var vc : SpiceIngredientProtocol?
+    
+    func getIngredients(completion : @escaping (_ ingredients : [Ingredient]) -> Void ){
         
-        let closure = {
+        let closure = { [weak vc] in
             guard let vc = vc else { return }
             vc.spiceIngredientAction()
         }

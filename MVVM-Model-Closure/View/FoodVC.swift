@@ -8,25 +8,24 @@
 import UIKit
 import Combine
 
-class FoodVC: UIViewController , FoodPresenter {
+class FoodVC: UIViewController {
     
     var model : FoodViewModelProtocol?
     var ingredients = [Ingredient]()
-    
     var cancellables = [AnyCancellable]()
-    
+
     @IBOutlet weak var foodTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadIngredients()
-        model?.getAllIngredients()
+        model?.getApiData()
         foodTableView.delegate = self
         foodTableView.dataSource = self
         foodTableView.backgroundColor = .white
     }
     
-    func downloadIngredients() {
+    private func downloadIngredients() {
         model?.ingredientPublisher
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -38,22 +37,7 @@ class FoodVC: UIViewController , FoodPresenter {
                 }
             }.store(in: &cancellables)
     }
-    
-    func solidIngredientAction() {
-        setBackground(imageName: "solid.jpg")
-        createAlert(title: "This is a SOLID ingredient!", message: "You may need a bowl", backgroundColor: UIColor.blue)
-    }
-    
-    func liquidIngredientAction() {
-        setBackground(imageName: "liquid.jpg")
-        createAlert(title: "This is a LIQUID!", message: "Get yourself a glass to measure it", backgroundColor: UIColor.magenta)
-    }
-    
-    func spiceIngredientAction() {
-        setBackground(imageName: "spice.jpg")
-        createAlert(title: "This is a SPICE", message: "Don't overuse, someone might not like it", backgroundColor: UIColor.green)
-    }
-    
+
     func createAlert(title: String, message: String, backgroundColor : UIColor) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default)
@@ -94,5 +78,28 @@ extension FoodVC : UITableViewDelegate {
         guard let selection = cellData.selection else { return }
         selection()
     }
-    
 }
+
+extension FoodVC : SolidIngredientProtocol {
+    func solidIngredientAction() {
+        setBackground(imageName: "solid.jpg")
+        createAlert(title: "This is a SOLID ingredient!", message: "You may need a bowl", backgroundColor: UIColor.blue)
+    }
+}
+
+extension FoodVC : LiquidIngredientProtocol {
+    func liquidIngredientAction() {
+        setBackground(imageName: "liquid.jpg")
+        createAlert(title: "Liquid Ingredient!", message: "Get a glass to measure it", backgroundColor: UIColor.blue)
+    }
+}
+
+extension FoodVC : SpiceIngredientProtocol {
+    func spiceIngredientAction() {
+        setBackground(imageName: "spice.jpg")
+        createAlert(title: "This is a spice", message: "Don't overuse it", backgroundColor: UIColor.blue)
+    }
+}
+
+
+

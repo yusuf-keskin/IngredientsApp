@@ -7,11 +7,13 @@
 
 import Foundation
 
-class LiquidApi : IngredientApiProtocol{
+class LiquidApi : IngredientsApiProtocol{
     
-    func getIngredients(vc : FoodPresenter?, completion : @escaping (_ ingredients : [Ingredient]) -> Void ){
+    weak var vc : LiquidIngredientProtocol?
+    
+    func getIngredients(completion : @escaping (_ ingredients : [Ingredient]) -> Void ){
         
-        let closure = {
+        let closure = {[weak vc] in
             guard let vc = vc else { return }
             vc.liquidIngredientAction()
         }

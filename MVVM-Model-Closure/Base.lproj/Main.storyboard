@@ -89,13 +89,14 @@
                             <constraint firstItem="Ly0-xz-Vyr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uGf-VH-Ocd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Mxe-rc-eP5"/>
                     <connections>
                         <outlet property="foodTableView" destination="Ly0-xz-Vyr" id="zH5-Wv-1uX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="110.68702290076335" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="111" y="-23"/>
         </scene>
     </scenes>
     <resources>

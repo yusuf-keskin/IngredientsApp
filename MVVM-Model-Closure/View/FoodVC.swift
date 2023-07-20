@@ -90,14 +90,14 @@ extension FoodVC : SolidIngredientProtocol {
 extension FoodVC : LiquidIngredientProtocol {
     func liquidIngredientAction() {
         setBackground(imageName: "liquid.jpg")
-        createAlert(title: "Liquid Ingredient!", message: "Get a glass to measure it", backgroundColor: UIColor.blue)
+        createAlert(title: "Liquid Ingredient!", message: "Get a glass to measure it", backgroundColor: UIColor.green)
     }
 }
 
 extension FoodVC : SpiceIngredientProtocol {
     func spiceIngredientAction() {
         setBackground(imageName: "spice.jpg")
-        createAlert(title: "This is a spice", message: "Don't overuse it", backgroundColor: UIColor.blue)
+        createAlert(title: "This is a spice", message: "Don't overuse it", backgroundColor: UIColor.systemPink)
     }
 }
 
